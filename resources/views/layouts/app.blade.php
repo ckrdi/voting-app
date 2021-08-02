@@ -55,7 +55,42 @@
             </header>
             
             <main class="flex container mx-auto max-w-custom">
-                <div class="w-70 mr-5">Lorem ipsum dolor sit amet consectetur adipisicing elit. Libero optio enim sint iste saepe ipsum obcaecati aliquam voluptatum natus nisi id, pariatur, doloribus ab non suscipit ipsa aut. Laborum, ullam hic a non maiores eligendi cupiditate iure repellendus totam pariatur saepe quis? Dignissimos unde sint, minima optio aliquid obcaecati harum!</div>
+                <div class="w-70 mr-5">
+                    <div class="border-2 custom-border rounded-xl mt-16 bg-white">
+                        <div class="text-center px-6 py-2 pt-6">
+                            <h3 class="font-semibold">Add an Idea</h3>
+                            <p class="text-xs mt-4">Let us know what you would like and we'll take a look over!</p>
+                        </div>
+
+                        <form action="" method="POST" class="space-y-4 px-4 py-6">
+                            <div>
+                                <input type="text" class="text-sm w-full bg-gray-100 border-none rounded-xl placeholder-gray-900 px-4 py-2" placeholder="Your idea">
+                            </div>
+                            <div>
+                                <select name="category_add" id="category_add" class="text-sm bg-gray-100 w-full rounded-xl px-4 py-2 border-none">
+                                    <option value="Category one">Category one</option>
+                                    <option value="Category two">Category two</option>
+                                    <option value="Category three">Category three</option>
+                                    <option value="Category four">Category four</option>
+                                </select>
+                            </div>
+                            <div>
+                                <textarea name="idea" id="idea" cols="30" rows="4" class="text-sm bg-gray-100 w-full rounded-xl px-4 py-2 border-none placeholder-gray-900" placeholder="Describe your idea"></textarea>
+                            </div>
+                            <div class="flex items-center space-x-3">
+                                <button type="button" class="flex items-center justify-center w-1/2 h-11 text-xs bg-gray-200 font-semibold rounded-xl border border-gray-200 hover:border-gray-400 transition duration-150 ease-in px-6 py-3">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 transform -rotate-45" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.172 7l-6.586 6.586a2 2 0 102.828 2.828l6.414-6.586a4 4 0 00-5.656-5.656l-6.415 6.585a6 6 0 108.486 8.486L20.5 13" />
+                                    </svg>
+                                    <span class="ml-1">Attach</span>
+                                </button>
+                                <button type="submit" class="flex items-center justify-center w-1/2 h-11 text-white text-xs bg-blue font-semibold rounded-xl border border-blue hover:border-blue-hover transition duration-150 ease-in px-6 py-3">
+                                    <span>Submit</span>
+                                </button>
+                            </div>
+                        </form>
+                    </div> <!-- end idea form -->
+                </div>
                 <div class="w-175">
                     <nav class="flex items-center justify-between text-xs">
                         <ul class="flex uppercase font-semibold border-b-4 pb-3 space-x-10">
