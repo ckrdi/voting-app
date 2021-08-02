@@ -37,17 +37,21 @@
                     <button class="w-20 bg-gray-200 font-bold text-xs uppercase rounded-xl px-4 py-3 border border-gray-200 hover:border-gray-400 transition duration-150 ease-in">Vote</button>
                 </div>
             </div>
-            <div class="flex px-3 py-6">
-                <a href="#" class="flex-none">
-                    <img src="https://source.unsplash.com/200*200/?face&crop=face&v=1" alt="avatar" class="w-14 h-14 rounded-xl">
-                </a>
-                <div class="mx-4">
-                    <h4 class="text-xl font-semibold">
-                        <a href="#" class="hover:underline">A random title</a>
-                    </h4>
-                    <p class="text-gray-600 mt-3 line-clamp-3">
-                        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Dolores error ipsa perspiciatis repellendus minus quibusdam sed! Nihil nemo esse optio dolorem corrupti deserunt repudiandae obcaecati. Asperiores, quidem expedita. Quam autem est ex quis illum non fuga nulla repellendus. Dolore assumenda iure ratione deleniti, labore a autem optio debitis omnis sequi.
-                    </p>
+            <div class="flex flex-1 px-3 py-6">
+                <div class="flex-none">
+                    <a href="#" >
+                        <img src="https://source.unsplash.com/200*200/?face&crop=face&v=1" alt="avatar" class="w-14 h-14 rounded-xl">
+                    </a>
+                </div>
+                <div class="mx-4 w-full flex flex-col justify-between">
+                    <div>
+                        <h4 class="text-xl font-semibold">
+                            <a href="#" class="hover:underline">A random title</a>
+                        </h4>
+                        <p class="text-gray-600 mt-3 line-clamp-3">
+                            Lorem ipsum dolor sit amet.
+                        </p>
+                    </div>
                     <div class="flex items-center justify-between mt-6">
                         <div class="flex items-center text-xs  text-gray-400 font-semibold space-x-2">
                             <div>10 hours ago</div>
