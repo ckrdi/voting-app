@@ -17,7 +17,7 @@
         <script src="{{ asset('js/app.js') }}" defer></script>
     </head>
     <body class="font-sans text-gray-900 text-sm">
-        <div class="min-h-screen bg-gray-background">
+        <div class="min-h-screen bg-gray-background pb-10">
             {{-- @include('layouts.navigation') --}}
 
             <!-- Page Heading -->
