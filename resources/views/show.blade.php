@@ -32,13 +32,13 @@
                             <div>&bull;</div>
                             <div class="text-gray-900">3 Comments</div>
                         </div>
-                        <div class="flex items-center space-x-2">
+                        <div x-data={isOpen:false} class="flex items-center space-x-2">
                             <div class="bg-gray-200 text-xs font-bold uppercase leading-none rounded-full text-center w-28 h-7 py-2 px-3">Open</div>
-                            <button class="relative bg-gray-100 hover:bg-gray-200 h-7 py-2 px-3 rounded-full flex items-center transition duration-150 ease-in">
+                            <button @click="isOpen=!isOpen" class="relative bg-gray-100 hover:bg-gray-200 h-7 py-2 px-3 rounded-full flex items-center transition duration-150 ease-in">
                                 <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24" stroke="currentColor">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 12h.01M12 12h.01M19 12h.01M6 12a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0z" />
                                 </svg>
-                                <ul class="absolute w-44 font-semibold bg-white shadow-md rounded-xl text-left top-2">
+                                <ul style="display: none;" x-show.transition.origin.top.left.duration.150ms="isOpen" class="absolute w-44 font-semibold bg-white shadow-md rounded-xl text-left top-6">
                                     <li><a href="#" class="hover:bg-gray-100 block transition duration-150 ease-in px-5 py-3 rounded-t-xl">Mark as Spam</a></li>
                                     <li><a href="#" class="hover:bg-gray-100 block transition duration-150 ease-in px-5 py-3 rounded-b-xl">Delete Post</a></li>
                                 </ul>
@@ -50,11 +50,11 @@
         </div> <!-- end idea container -->
         <div class="buttons-container ml-3 flex items-center justify-between">
             <div class="flex items-center space-x-3">
-                <div class="relative">
-                    <button type="button" class="flex items-center justify-center w-32 h-11 text-white text-xs bg-blue font-semibold rounded-xl border border-blue hover:border-blue-hover transition duration-150 ease-in px-6 py-3">
+                <div x-data={isOpen:false} class="relative">
+                    <button @click="isOpen=!isOpen" type="button" class="flex items-center justify-center w-32 h-11 text-white text-xs bg-blue font-semibold rounded-xl border border-blue hover:border-blue-hover transition duration-150 ease-in px-6 py-3">
                         <span>Reply</span>
                     </button>
-                    <div class="absolute z-10 w-104 text-left font-semibold text-sm bg-white shadow-sm rounded-xl mt-2">
+                    <div style="display: none;" x-show.transition.origin.top.left.duration.150ms="isOpen" class="absolute z-10 w-104 text-left font-semibold text-sm bg-white shadow-sm rounded-xl mt-2">
                         <form action="#" class="space-y-4 px-4 py-6">
                             <div>
                                 <textarea name="post_comment" id="post_comment" cols="30" rows="4" class="w-full text-sm bg-gray-100 rounded-xl placeholder-gray-900 border-none px-4 py-2" placeholder="Share your thoughts"></textarea>
@@ -73,14 +73,14 @@
                         </form>
                     </div>
                 </div>
-                <div class="relative">
-                    <button type="button" class="flex items-center justify-between w-36 h-11 text-xs bg-gray-200 font-semibold rounded-xl border border-gray-200 hover:border-gray-400 transition duration-150 ease-in px-6 py-3">
+                <div x-data={isOpen:false} class="relative">
+                    <button @click="isOpen=!isOpen" type="button" class="flex items-center justify-between w-36 h-11 text-xs bg-gray-200 font-semibold rounded-xl border border-gray-200 hover:border-gray-400 transition duration-150 ease-in px-6 py-3">
                         <span class="ml-3">Set Status</span>
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
                         </svg>
                     </button>
-                    <div class=" absolute z-20 w-76 text-left font-semibold text-sm bg-white shadow-sm rounded-xl mt-2">
+                    <div style="display: none;" x-show.transition.origin.top.left.duration.150ms="isOpen" class="absolute z-20 w-76 text-left font-semibold text-sm bg-white shadow-sm rounded-xl mt-2">
                         <form action="#" class="space-y-4 px-4 py-6">
                             <div class="space-y-2">
                                 <div>
@@ -173,12 +173,12 @@
                             <div>&bull;</div>                            
                             <div>10 hours ago</div>
                         </div>
-                        <div class="flex items-center">
-                            <button class="relative bg-gray-100 hover:bg-gray-200 h-7 py-2 px-3 rounded-full flex items-center transition duration-150 ease-in">
+                        <div x-data="{isOpen:false}" class="flex items-center">
+                            <button @click="isOpen=!isOpen" class="relative bg-gray-100 hover:bg-gray-200 h-7 py-2 px-3 rounded-full flex items-center transition duration-150 ease-in">
                                 <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24" stroke="currentColor">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 12h.01M12 12h.01M19 12h.01M6 12a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0z" />
                                 </svg>
-                                <ul class="absolute z-10 w-44 font-semibold bg-white shadow-md rounded-xl text-left top-2">
+                                <ul style="display: none;" x-show.transition.origin.top.left.duration.150ms="isOpen" class="absolute z-10 w-44 font-semibold bg-white shadow-md rounded-xl text-left top-6">
                                     <li><a href="#" class="hover:bg-gray-100 block transition duration-150 ease-in px-5 py-3 rounded-t-xl">Mark as Spam</a></li>
                                     <li><a href="#" class="hover:bg-gray-100 block transition duration-150 ease-in px-5 py-3 rounded-b-xl">Delete Post</a></li>
                                 </ul>
@@ -211,12 +211,12 @@
                             <div>&bull;</div>                            
                             <div>10 hours ago</div>
                         </div>
-                        <div class="flex items-center">
-                            <button class="relative bg-gray-100 hover:bg-gray-200 h-7 py-2 px-3 rounded-full flex items-center transition duration-150 ease-in">
+                        <div x-data="{isOpen:false}" class="flex items-center">
+                            <button @click="isOpen=!isOpen" class="relative bg-gray-100 hover:bg-gray-200 h-7 py-2 px-3 rounded-full flex items-center transition duration-150 ease-in">
                                 <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24" stroke="currentColor">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 12h.01M12 12h.01M19 12h.01M6 12a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0z" />
                                 </svg>
-                                <ul class="absolute z-10 w-44 font-semibold bg-white shadow-md rounded-xl text-left top-2">
+                                <ul style="display: none;" x-show.transition.origin.top.left.duration.150ms="isOpen" class="absolute z-10 w-44 font-semibold bg-white shadow-md rounded-xl text-left top-6">
                                     <li><a href="#" class="hover:bg-gray-100 block transition duration-150 ease-in px-5 py-3 rounded-t-xl">Mark as Spam</a></li>
                                     <li><a href="#" class="hover:bg-gray-100 block transition duration-150 ease-in px-5 py-3 rounded-b-xl">Delete Post</a></li>
                                 </ul>
@@ -248,12 +248,12 @@
                             <div>&bull;</div>                            
                             <div>10 hours ago</div>
                         </div>
-                        <div class="flex items-center">
-                            <button class="relative bg-gray-100 hover:bg-gray-200 h-7 py-2 px-3 rounded-full flex items-center transition duration-150 ease-in">
+                        <div x-data="{isOpen:false}" class="flex items-center">
+                            <button @click="isOpen=!isOpen" class="relative bg-gray-100 hover:bg-gray-200 h-7 py-2 px-3 rounded-full flex items-center transition duration-150 ease-in">
                                 <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24" stroke="currentColor">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 12h.01M12 12h.01M19 12h.01M6 12a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0z" />
                                 </svg>
-                                <ul class="absolute z-10 w-44 font-semibold bg-white shadow-md rounded-xl text-left top-2">
+                                <ul style="display: none;" x-show.transition.origin.top.left.duration.150ms="isOpen" class="absolute z-10 w-44 font-semibold bg-white shadow-md rounded-xl text-left top-6">
                                     <li><a href="#" class="hover:bg-gray-100 block transition duration-150 ease-in px-5 py-3 rounded-t-xl">Mark as Spam</a></li>
                                     <li><a href="#" class="hover:bg-gray-100 block transition duration-150 ease-in px-5 py-3 rounded-b-xl">Delete Post</a></li>
                                 </ul>
