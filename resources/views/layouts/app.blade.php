@@ -21,7 +21,7 @@
             {{-- @include('layouts.navigation') --}}
 
             <!-- Page Heading -->
-            <header class="flex items-center justify-between px-8 py-4">
+            <header class="flex flex-col lg:flex-row items-center justify-between px-8 py-4">
                 <a href="#">Voting App</a>
                 <div class="flex items-center">
                     @if (Route::has('login'))
@@ -54,9 +54,9 @@
                 </div>
             </header>
             
-            <main class="flex container mx-auto max-w-custom">
-                <div class="w-70 mr-5">
-                    <div class="border-2 custom-border rounded-xl mt-16 bg-white">
+            <main class="lg:flex container mx-auto lg:max-w-custom">
+                <div class="lg:w-70 lg:mr-5">
+                    <div class="border-2 lg:sticky top-6 mx-3 lg:mx-0 custom-border rounded-xl mt-16 bg-white">
                         <div class="text-center px-6 py-2 pt-6">
                             <h3 class="font-semibold">Add an Idea</h3>
                             <p class="text-xs mt-4">Let us know what you would like and we'll take a look over!</p>
@@ -91,8 +91,8 @@
                         </form>
                     </div> <!-- end idea form -->
                 </div>
-                <div class="w-175">
-                    <nav class="flex items-center justify-between text-xs">
+                <div class="lg:w-175">
+                    <nav class="hidden lg:flex items-center justify-between text-xs">
                         <ul class="flex uppercase font-semibold border-b-4 pb-3 space-x-10">
                             <li><a href="#" class="border-b-4 pb-3 border-blue">All Ideas (87)</a></li>
                             <li><a href="#" class="text-gray-400 transition duration-150 ease-in border-b-4 pb-3 hover:border-blue">Considering (6)</a></li>

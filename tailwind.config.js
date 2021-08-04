@@ -11,6 +11,9 @@ module.exports = {
 
     theme: {
         extend: {
+            screens: {
+                xs: "480px",
+            },
             colors: {
                 // colors taken from DefaultConfig.stub.js node_modules/tailwindcss/stubs
                 transparent: "transparent",
