@@ -33,14 +33,18 @@ class RegisteredUserController extends Controller
      */
     public function store(Request $request)
     {
+        // added username column
         $request->validate([
             'name' => 'required|string|max:255',
+            // only accept username with alpha numeric characters
+            'username' => ['required', 'string', 'alpha_num', 'max:255'],
             'email' => 'required|string|email|max:255|unique:users',
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
         ]);
 
         $user = User::create([
             'name' => $request->name,
+            'username' => $request->username,
             'email' => $request->email,
             'password' => Hash::make($request->password),
         ]);

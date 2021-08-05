@@ -10,6 +10,8 @@ class Idea extends Model
 {
     use HasFactory, Sluggable;
 
+    public const PAGINATION_COUNT = 10;
+
     protected $guarded = [];
 
     // eloquent relationship: an idea belongs to only one user

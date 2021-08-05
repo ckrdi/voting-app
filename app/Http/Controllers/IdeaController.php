@@ -15,7 +15,8 @@ class IdeaController extends Controller
     public function index(Idea $idea)
     {
         // simple pagination using tailwind
-        $data = $idea->simplePaginate(10);
+        // added PAGINATION_COUNT so not using magic number
+        $data = $idea->simplePaginate(Idea::PAGINATION_COUNT);
 
         return view('index', [
             'data' => $data
