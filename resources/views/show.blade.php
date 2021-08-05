@@ -16,17 +16,17 @@
                 <div class="lg:mx-4 mt-4 lg:mt-0 w-full flex flex-col justify-between">
                     <div>
                         <h4 class="text-xl font-semibold">
-                            <a href="#" class="hover:underline">A random title</a>
+                            <a href="#" class="hover:underline">{{ $idea->title }}</a>
                         </h4>
                         <p class="text-gray-600 mt-3">
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Nulla cupiditate non exercitationem veniam? Quae officia iure aut corporis porro obcaecati aspernatur, ducimus laboriosam in officiis debitis sed illo at sit exercitationem esse facilis cum aperiam repellat ad necessitatibus soluta. Mollitia accusamus cupiditate excepturi delectus, atque ipsam aliquid quaerat. Quisquam quod tempore adipisci, tenetur modi nobis. Enim natus qui labore in repellat. Delectus natus eum sint illo mollitia? Quisquam a ullam repellat dolor fugit repudiandae architecto et cum beatae quam obcaecati dolores, eligendi velit, voluptatem adipisci aut non molestias similique vel culpa vero expedita quos aliquam facilis. Error explicabo maxime similique?
+                            {{ $idea->body }}
                         </p>
                     </div>
                     <div class="lg:flex items-center justify-between mt-6">
                         <div class="xs:flex items-center text-xs  text-gray-400 font-semibold space-x-0 xs:space-x-2">
-                            <div class="text-gray-900 font-bold mb-2 xs:mb-0">John Doe</div>                     
+                            <div class="text-gray-900 font-bold mb-2 xs:mb-0">{{ $idea->user->username }}</div>                     
                             <div class="hidden xs:block">&bull;</div> 
-                            <div class="mb-2 xs:mb-0">10 hours ago</div>
+                            <div class="mb-2 xs:mb-0">{{ $idea->created_at->diffForHumans() }}</div>
                             <div class="hidden xs:block">&bull;</div>
                             <div class="mb-2 xs:mb-0">Category One</div>
                             <div class="hidden xs:block">&bull;</div>

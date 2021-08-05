@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\IdeaController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,12 +14,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('index');
-});
+Route::get('/', [IdeaController::class, 'index'])->name('index');
 
-Route::get('/idea', function () {
-    return view('show');
-});
+// idea:slug in wildcard to show using sluggable
+Route::get('/ideas/{idea:slug}', [IdeaController::class, 'show'])->name('show');
 
 require __DIR__.'/auth.php';
