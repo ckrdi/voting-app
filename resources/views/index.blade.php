@@ -41,15 +41,10 @@
                     </div>
                 </div>
                 <div class="flex flex-1 lg:px-3 py-6">
-                    <div class="hidden lg:block flex-none">
-                        <a href="#" >
-                            <img src="https://source.unsplash.com/200*200/?face&crop=face&v=1" alt="avatar" class="w-14 h-14 rounded-xl">
-                        </a>
-                    </div>
                     <div class="mx-4 w-full flex flex-col justify-between">
                         <div>
-                            <div class="flex lg:block">
-                                <a href="#" class="block flex-shrink-0 mr-3 lg:hidden">
+                            <div class="flex">
+                                <a href="#" class="block flex-shrink-0 mr-3">
                                     <img src="https://source.unsplash.com/200*200/?face&crop=face&v=1" alt="avatar" class="w-14 h-14 rounded-xl">
                                 </a>
                                 <h4 class="text-xl font-semibold">
