@@ -86,4 +86,17 @@ class ShowIdeasTest extends TestCase
         $response->assertSee($ideaEleven->title);
         $response->assertDontSee($ideaOne->title);
     }
+
+    public function test_avatars_idea_is_rendered_on_the_page()
+    {
+        $idea = Idea::factory()->create();
+
+        $response = $this->get('/');
+
+        $response->assertSee($idea->user->avatar());
+
+        $response = $this->get(route('show', $idea));
+
+        $response->assertSee($idea->user->avatar());
+    }
 }

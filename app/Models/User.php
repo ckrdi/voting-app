@@ -47,4 +47,14 @@ class User extends Authenticatable
     {
         return $this->hasMany(Idea::class);
     }
+
+    // get a user's avatar
+    public function avatar() 
+    {
+        // https://en.gravatar.com/site/implement/images for more detailed info about gravatar
+        // md5() is php method that hash something
+        // s=80 is image size
+        // d=identicon is default image based on user's email
+        return 'https://www.gravatar.com/avatar/' . md5($this->email) . '?s=80&d=identicon';
+    }
 }

@@ -37,7 +37,7 @@ class RegisteredUserController extends Controller
         $request->validate([
             'name' => 'required|string|max:255',
             // only accept username with alpha numeric characters
-            'username' => ['required', 'string', 'alpha_num', 'max:255'],
+            'username' => ['required', 'string', 'alpha_num', 'max:255', 'unique:users'],
             'email' => 'required|string|email|max:255|unique:users',
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
         ]);

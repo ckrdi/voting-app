@@ -45,7 +45,7 @@
                         <div>
                             <div class="flex">
                                 <a href="#" class="block flex-shrink-0 mr-3">
-                                    <img src="https://source.unsplash.com/200*200/?face&crop=face&v=1" alt="avatar" class="w-14 h-14 rounded-xl">
+                                    <img src="{{ $idea->user->avatar() }}" alt="avatar" class="w-14 h-14 rounded-xl">
                                 </a>
                                 <h4 class="text-xl font-semibold">
                                     <a href="{{ route('show', $idea) }}" class="hover:underline">{{ $idea->title }}</a>

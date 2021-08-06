@@ -6,44 +6,42 @@
         <span class="ml-1">All Ideas</span>
     </a>
     <div class="ideas-container space-y-3 my-6">
-        <div class="idea-container mx-3 lg:mx-0 bg-white rounded-xl flex hover:shadow-md transition duration-150 ease-in cursor-pointer">
-            <div class="flex flex-col lg:flex-row flex-1 px-6 py-6">
+        <div class="idea-container mx-3 lg:mx-0 bg-white rounded-xl flex hover:shadow-md transition duration-150 ease-in cursor-pointer">    
+            <div class="w-full flex flex-col justify-between px-6 py-6">
                 <div class="flex-none">
                     <a href="#" >
-                        <img src="https://source.unsplash.com/200*200/?face&crop=face&v=1" alt="avatar" class="w-14 h-14 rounded-xl">
+                        <img src="{{ $idea->user->avatar() }}" alt="avatar" class="w-14 h-14 rounded-xl">
                     </a>
                 </div>
-                <div class="lg:mx-4 mt-4 lg:mt-0 w-full flex flex-col justify-between">
-                    <div>
-                        <h4 class="text-xl font-semibold">
-                            <a href="#" class="hover:underline">{{ $idea->title }}</a>
-                        </h4>
-                        <p class="text-gray-600 mt-3">
-                            {{ $idea->body }}
-                        </p>
+                <div>
+                    <h4 class="text-xl font-semibold mt-3">
+                        <a href="#" class="hover:underline">{{ $idea->title }}</a>
+                    </h4>
+                    <p class="text-gray-600 mt-3">
+                        {{ $idea->body }}
+                    </p>
+                </div>
+                <div class="lg:flex items-center justify-between mt-6">
+                    <div class="xs:flex items-center text-xs  text-gray-400 font-semibold space-x-0 xs:space-x-2">
+                        <div class="text-gray-900 font-bold mb-2 xs:mb-0">{{ $idea->user->username }}</div>                     
+                        <div class="hidden xs:block">&bull;</div> 
+                        <div class="mb-2 xs:mb-0">{{ $idea->created_at->diffForHumans() }}</div>
+                        <div class="hidden xs:block">&bull;</div>
+                        <div class="mb-2 xs:mb-0">Category One</div>
+                        <div class="hidden xs:block">&bull;</div>
+                        <div class="text-gray-900">3 Comments</div>
                     </div>
-                    <div class="lg:flex items-center justify-between mt-6">
-                        <div class="xs:flex items-center text-xs  text-gray-400 font-semibold space-x-0 xs:space-x-2">
-                            <div class="text-gray-900 font-bold mb-2 xs:mb-0">{{ $idea->user->username }}</div>                     
-                            <div class="hidden xs:block">&bull;</div> 
-                            <div class="mb-2 xs:mb-0">{{ $idea->created_at->diffForHumans() }}</div>
-                            <div class="hidden xs:block">&bull;</div>
-                            <div class="mb-2 xs:mb-0">Category One</div>
-                            <div class="hidden xs:block">&bull;</div>
-                            <div class="text-gray-900">3 Comments</div>
-                        </div>
-                        <div x-data={isOpen:false} class="flex justify-between lg:justify-start items-center mt-3 lg:mt-0 space-x-2">
-                            <div class="bg-gray-200 text-xs font-bold uppercase leading-none rounded-full text-center w-28 h-7 py-2 px-3">Open</div>
-                            <button @click="isOpen=!isOpen" class="relative bg-gray-100 hover:bg-gray-200 h-7 py-2 px-3 rounded-full flex items-center transition duration-150 ease-in">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 12h.01M12 12h.01M19 12h.01M6 12a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0z" />
-                                </svg>
-                                <ul style="display: none;" x-show.transition.origin.top.left.duration.150ms="isOpen" class="absolute w-44 font-semibold bg-white shadow-md rounded-xl text-left top-6 right-0 xl:left-0">
-                                    <li><a href="#" class="hover:bg-gray-100 block transition duration-150 ease-in px-5 py-3 rounded-t-xl">Mark as Spam</a></li>
-                                    <li><a href="#" class="hover:bg-gray-100 block transition duration-150 ease-in px-5 py-3 rounded-b-xl">Delete Post</a></li>
-                                </ul>
-                            </button>
-                        </div>
+                    <div x-data={isOpen:false} class="flex justify-between lg:justify-start items-center mt-3 lg:mt-0 space-x-2">
+                        <div class="bg-gray-200 text-xs font-bold uppercase leading-none rounded-full text-center w-28 h-7 py-2 px-3">Open</div>
+                        <button @click="isOpen=!isOpen" class="relative bg-gray-100 hover:bg-gray-200 h-7 py-2 px-3 rounded-full flex items-center transition duration-150 ease-in">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 12h.01M12 12h.01M19 12h.01M6 12a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0z" />
+                            </svg>
+                            <ul style="display: none;" x-show.transition.origin.top.left.duration.150ms="isOpen" class="absolute w-44 font-semibold bg-white shadow-md rounded-xl text-left top-6 right-0 xl:left-0">
+                                <li><a href="#" class="hover:bg-gray-100 block transition duration-150 ease-in px-5 py-3 rounded-t-xl">Mark as Spam</a></li>
+                                <li><a href="#" class="hover:bg-gray-100 block transition duration-150 ease-in px-5 py-3 rounded-b-xl">Delete Post</a></li>
+                            </ul>
+                        </button>
                     </div>
                 </div>
             </div>

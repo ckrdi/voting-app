@@ -2,6 +2,7 @@
 
 namespace Tests\Feature;
 
+use App\Models\User;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
@@ -30,5 +31,45 @@ class RegistrationTest extends TestCase
 
         $this->assertAuthenticated();
         $response->assertRedirect(RouteServiceProvider::HOME);
+    }
+
+    public function test_new_user_cannot_register_with_already_used_username()
+    {
+        User::factory()->create([
+            'name' => 'Test User',
+            'username' => 'testusername',
+            'email' => 'test@example.com',
+            'password' => 'password',
+        ]);
+
+        $this->withHeaders(['accept'=>'application/json'])->post('/register', [
+            'name' => 'Test User 2',
+            'username' => 'testusername',
+            'email' => 'test2@example.com',
+            'password' => 'password',
+            'password_confirmation' => 'password',
+        ]);
+
+        $this->assertGuest();
+    }
+
+    public function test_new_user_cannot_register_with_already_used_email()
+    {
+        User::factory()->create([
+            'name' => 'Test User',
+            'username' => 'testusername',
+            'email' => 'test@example.com',
+            'password' => 'password',
+        ]);
+
+        $this->withHeaders(['accept'=>'application/json'])->post('/register', [
+            'name' => 'Test User 2',
+            'username' => 'testusername2',
+            'email' => 'test@example.com',
+            'password' => 'password',
+            'password_confirmation' => 'password',
+        ]);
+
+        $this->assertGuest();
     }
 }
