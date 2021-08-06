@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
 use App\Models\Idea;
 use Illuminate\Http\Request;
 
@@ -12,14 +13,16 @@ class IdeaController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Idea $idea)
+    public function index(Idea $idea, Category $category)
     {
         // simple pagination using tailwind
         // added PAGINATION_COUNT so not using magic number
-        $data = $idea->simplePaginate(Idea::PAGINATION_COUNT);
+        $data = $idea->with('user', 'category')->simplePaginate(Idea::PAGINATION_COUNT);
+        $categories = $category->all();
 
         return view('index', [
-            'data' => $data
+            'data' => $data,
+            'categories' => $categories
         ]);
     }
 

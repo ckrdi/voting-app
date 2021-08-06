@@ -2,10 +2,9 @@
     <div class="filters lg:flex p-3 lg:p-0 space-y-3 lg:space-y-0 lg:space-x-6 ">
         <div class="lg:w-1/4">
             <select name="category" id="category" class="w-full rounded-xl px-4 py-2 border-none">
-                <option value="Category one">Category one</option>
-                <option value="Category two">Category two</option>
-                <option value="Category three">Category three</option>
-                <option value="Category four">Category four</option>
+                @foreach ($categories as $category)
+                    <option value="{{ $category->name }}">{{ $category->name }}</option>
+                @endforeach
             </select>
         </div>
         <div class="lg:w-1/4">
@@ -59,7 +58,7 @@
                             <div class="flex items-center text-xs  text-gray-400 font-semibold space-x-1 lg:space-x-2">
                                 <div>{{ $idea->created_at->diffForHumans() }}</div>
                                 <div>&bull;</div>
-                                <div>Category One</div>
+                                <div>{{ $idea->category->name }}</div>
                                 <div>&bull;</div>
                                 <div class="text-gray-900">3 Comments</div>
                             </div>

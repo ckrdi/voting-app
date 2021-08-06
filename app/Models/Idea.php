@@ -29,4 +29,10 @@ class Idea extends Model
             ]
         ];
     }
+
+    // eloquent relationship: an idea belongs to only one category
+    public function category()
+    {
+        return $this->belongsTo(Category::class);
+    }
 }
