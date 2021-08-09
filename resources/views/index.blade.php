@@ -64,7 +64,7 @@
                             </div>
                             <div x-data="{ isOpen: false }" class="lg:flex items-center justify-between space-y-2 lg:space-y-0 space-x-2">
                                 <div class="flex items-center justify-between lg:justify-start space-x-2">
-                                    <div class="bg-gray-200 text-xs font-bold uppercase leading-none rounded-full text-center lg:w-28 h-7 py-2 px-3">Open</div>
+                                    <div class="{{ $idea->status->statusClass() }} text-xs font-bold uppercase leading-none rounded-full text-center lg:w-28 h-7 py-2 px-3">{{ $idea->status->name }}</div>
                                     <button @click="isOpen=!isOpen" class="relative bg-gray-100 hover:bg-gray-200 h-7 py-2 px-3 rounded-full flex items-center transition duration-150 ease-in">
                                         <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24" stroke="currentColor">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 12h.01M12 12h.01M19 12h.01M6 12a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0z" />

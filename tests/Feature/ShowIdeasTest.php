@@ -2,14 +2,17 @@
 
 namespace Tests\Feature;
 
-use App\Models\Idea;
-use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
+use App\Models\Idea;
+use App\Models\User;
+use App\Models\Status;
+use App\Models\Category;
+use Illuminate\Foundation\Testing\WithFaker;
+use Illuminate\Foundation\Testing\RefreshDatabase;
 
 class ShowIdeasTest extends TestCase
 {
-    use RefreshDatabase;
+    use RefreshDatabase, WithFaker;
 
     /**
      * A basic feature test example.
@@ -30,23 +33,26 @@ class ShowIdeasTest extends TestCase
      */
     public function test_list_of_ideas_shows_on_main_page()
     {
-        $ideaOne = Idea::factory()->create([
-            'title' => 'My First Title',
-            'body' => 'Body of my first title'
-        ]);
+        $category = Category::factory()->create([ 'name' => 'Test' ]);
+        $status = Status::factory()->create([ 'name' => 'Open' ]);
+        $idea = Idea::factory()->create([
+            'user_id' => User::factory()->create(),
+            'category_id' => $category->id,
+            'status_id' => $status->id,
+            'title' => $this->faker->words(6, true),
+            'body' => $this->faker->paragraphs(2, true)
 
-        $ideaTwo = Idea::factory()->create([
-            'title' => 'My Second Title',
-            'body' => 'Body of my second title'
         ]);
-
         $response = $this->get('/');
 
         $response->assertSuccessful();
-        $response->assertSee($ideaOne->title);
-        $response->assertSee($ideaOne->body);
-        $response->assertSee($ideaTwo->title);
-        $response->assertSee($ideaTwo->body);
+        $response->assertSee($idea->title);
+        $response->assertSee($idea->body);
+        $response->assertSee($idea->created_at->diffForHumans());
+        $response->assertSee($idea->category->name);
+        $response->assertSee($idea->status->name);
+        $response->assertSee($idea->user->avatar());
+        $response->assertSee($idea->status->statusClass());
     }
 
     /**
@@ -56,9 +62,15 @@ class ShowIdeasTest extends TestCase
      */
     public function test_single_idea_shows_on_idea_page()
     {
+        $category = Category::factory()->create([ 'name' => 'Test' ]);
+        $status = Status::factory()->create([ 'name' => 'Open' ]);
         $idea = Idea::factory()->create([
-            'title' => 'My Second Title',
-            'body' => 'Body of my second title'
+            'user_id' => User::factory()->create(),
+            'category_id' => $category->id,
+            'status_id' => $status->id,
+            'title' => $this->faker->words(6, true),
+            'body' => $this->faker->paragraphs(2, true)
+
         ]);
 
         $response = $this->get(route('show', $idea));
@@ -66,11 +78,22 @@ class ShowIdeasTest extends TestCase
         $response->assertSuccessful();
         $response->assertSee($idea->title);
         $response->assertSee($idea->body);
+        $response->assertSee($idea->created_at->diffForHumans());
+        $response->assertSee($idea->category->name);
+        $response->assertSee($idea->status->name);
+        $response->assertSee($idea->user->avatar());
+        $response->assertSee($idea->user->username);
+        $response->assertSee($idea->status->statusClass());
     }
 
     public function test_ideas_pagination_works()
     {
-        Idea::factory(Idea::PAGINATION_COUNT + 1)->create();
+        $category = Category::factory()->create([ 'name' => 'Test' ]);
+        $status = Status::factory()->create([ 'name' => 'Open' ]);
+        Idea::factory(Idea::PAGINATION_COUNT + 1)->create([
+            'category_id' => $category->id,
+            'status_id' => $status->id,
+        ]);
 
         $ideaOne = Idea::find(1);
 
@@ -85,18 +108,5 @@ class ShowIdeasTest extends TestCase
 
         $response->assertSee($ideaEleven->title);
         $response->assertDontSee($ideaOne->title);
-    }
-
-    public function test_avatars_idea_is_rendered_on_the_page()
-    {
-        $idea = Idea::factory()->create();
-
-        $response = $this->get('/');
-
-        $response->assertSee($idea->user->avatar());
-
-        $response = $this->get(route('show', $idea));
-
-        $response->assertSee($idea->user->avatar());
     }
 }
