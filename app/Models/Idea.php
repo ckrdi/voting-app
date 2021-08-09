@@ -14,12 +14,6 @@ class Idea extends Model
 
     protected $guarded = [];
 
-    // eloquent relationship: an idea belongs to only one user
-    public function user()
-    {
-        return $this->belongsTo(User::class);
-    }
-
     // eloquent sluggable for slug in url
     public function sluggable(): array
     {
@@ -30,14 +24,27 @@ class Idea extends Model
         ];
     }
 
+    // eloquent relationship: an idea belongs to only one user
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
     // eloquent relationship: an idea belongs to only one category
     public function category()
     {
         return $this->belongsTo(Category::class);
     }
 
+    // an idea belongs to only one status
     public function status()
     {
         return $this->belongsTo(Status::class);
+    }
+
+    // idea user pivot table
+    public function votes()
+    {
+        return $this->belongsToMany(User::class, 'votes');
     }
 }

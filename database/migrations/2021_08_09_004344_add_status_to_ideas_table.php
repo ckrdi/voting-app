@@ -14,7 +14,7 @@ class AddStatusToIdeasTable extends Migration
     public function up()
     {
         Schema::table('ideas', function (Blueprint $table) {
-            $table->foreignId('status_id')->after('category_id')->constrained()->onDelete('cascade');
+            $table->foreignId('status_id')->after('category_id')->constrained();
         });
     }
 

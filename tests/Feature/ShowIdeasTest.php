@@ -88,9 +88,11 @@ class ShowIdeasTest extends TestCase
 
     public function test_ideas_pagination_works()
     {
+        $user = User::factory()->create();
         $category = Category::factory()->create([ 'name' => 'Test' ]);
         $status = Status::factory()->create([ 'name' => 'Open' ]);
         Idea::factory(Idea::PAGINATION_COUNT + 1)->create([
+            'user_id' => $user->id,
             'category_id' => $category->id,
             'status_id' => $status->id,
         ]);

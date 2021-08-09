@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddCategoryToIdeasTable extends Migration
+class CreateVotesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,12 @@ class AddCategoryToIdeasTable extends Migration
      */
     public function up()
     {
-        Schema::table('ideas', function (Blueprint $table) {
-            $table->foreignId('category_id')->after('user_id')->constrained();
+        Schema::create('votes', function (Blueprint $table) {
+            $table->id();
+            $table->unique([ 'idea_id', 'user_id' ]);
+            $table->foreignId('idea_id')->constrained();
+            $table->foreignId('user_id')->constrained();
+            $table->timestamps();
         });
     }
 
@@ -25,8 +29,6 @@ class AddCategoryToIdeasTable extends Migration
      */
     public function down()
     {
-        Schema::table('ideas', function (Blueprint $table) {
-            $table->dropColumn('category_id');
-        });
+        Schema::dropIfExists('votes');
     }
 }

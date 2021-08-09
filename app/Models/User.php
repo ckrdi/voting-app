@@ -48,6 +48,12 @@ class User extends Authenticatable
         return $this->hasMany(Idea::class);
     }
 
+    // idea user pivot table
+    public function votes()
+    {
+        return $this->belongsToMany(Idea::class, 'votes');
+    }
+
     // get a user's avatar
     public function avatar() 
     {

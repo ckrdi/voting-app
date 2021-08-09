@@ -13,13 +13,16 @@ class IdeaController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Idea $idea, Category $category)
+    public function index()
     {
         // simple pagination using tailwind
         // added PAGINATION_COUNT so not using magic number
         // with eager loading
-        $data = $idea->with('user', 'category', 'status')->latest()->simplePaginate(Idea::PAGINATION_COUNT);
-        $categories = $category->all();
+        $data = Idea::with('user', 'category', 'status')
+            ->withCount('votes')
+            ->latest()
+            ->simplePaginate(Idea::PAGINATION_COUNT);
+        $categories = Category::all();
 
         return view('index', [
             'data' => $data,
@@ -57,7 +60,8 @@ class IdeaController extends Controller
     public function show(Idea $idea)
     {
         return view('show', [
-            'idea' => $idea
+            'idea' => $idea,
+            'votesCount' => $idea->votes()->count()
         ]);
     }
 

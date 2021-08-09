@@ -2,9 +2,7 @@
 
 namespace Database\Factories;
 
-use App\Models\Category;
 use App\Models\Idea;
-use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class IdeaFactory extends Factory
@@ -24,8 +22,8 @@ class IdeaFactory extends Factory
     public function definition()
     {
         return [
-            'user_id' => User::factory(),
-            'category_id' => $this->faker->numberBetween(1, 5),
+            'user_id' => $this->faker->numberBetween(1, 5),
+            'category_id' => $this->faker->numberBetween(1, 4),
             'status_id' => $this->faker->numberBetween(1, 5),
             'title' => $this->faker->words(6, true),
             'body' => $this->faker->paragraphs(2, true)
