@@ -18,7 +18,7 @@ class IdeaController extends Controller
         // simple pagination using tailwind
         // added PAGINATION_COUNT so not using magic number
         // with eager loading
-        $data = $idea->with('user', 'category', 'status')->simplePaginate(Idea::PAGINATION_COUNT);
+        $data = $idea->with('user', 'category', 'status')->latest()->simplePaginate(Idea::PAGINATION_COUNT);
         $categories = $category->all();
 
         return view('index', [

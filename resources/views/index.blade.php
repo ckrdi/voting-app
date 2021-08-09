@@ -3,7 +3,7 @@
         <div class="lg:w-1/4">
             <select name="category" id="category" class="w-full rounded-xl px-4 py-2 border-none">
                 @foreach ($categories as $category)
-                    <option value="{{ $category->name }}">{{ $category->name }}</option>
+                    <option value="{{ $category->id }}">{{ $category->name }}</option>
                 @endforeach
             </select>
         </div>
