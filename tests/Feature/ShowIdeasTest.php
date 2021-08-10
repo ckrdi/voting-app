@@ -14,23 +14,6 @@ class ShowIdeasTest extends TestCase
 {
     use RefreshDatabase, WithFaker;
 
-    /**
-     * A basic feature test example.
-     *
-     * @return void
-     */
-    public function test_example()
-    {
-        $response = $this->get('/');
-
-        $response->assertStatus(200);
-    }
-
-    /**
-     * A show ideas feature test.
-     *
-     * @return void
-     */
     public function test_list_of_ideas_shows_on_main_page()
     {
         $category = Category::factory()->create([ 'name' => 'Test' ]);
@@ -55,11 +38,6 @@ class ShowIdeasTest extends TestCase
         $response->assertSee($idea->status->statusClass());
     }
 
-    /**
-     * A show single idea feature test.
-     *
-     * @return void
-     */
     public function test_single_idea_shows_on_idea_page()
     {
         $category = Category::factory()->create([ 'name' => 'Test' ]);
