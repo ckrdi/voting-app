@@ -104,4 +104,71 @@ class VoteShowPageTest extends TestCase
             ->test(IdeaShow::class, [ 'idea' => $idea, 'votesCount' => $idea->votes()->count() ])
             ->assertSet('hasVoted', true);
     }
+
+    function test_user_redirected_to_login_when_clicking_vote_if_not_authenticated()
+    {
+        $user = User::factory()->create();
+        $category = Category::factory()->create([ 'name' => 'Test' ]);
+        $status = Status::factory()->create([ 'name' => 'Open' ]);
+        $idea = Idea::factory()->create([
+            'user_id' => $user->id,
+            'category_id' => $category->id,
+            'status_id' => $status->id,
+        ]);
+
+        Livewire::test(IdeaShow::class, [ 'idea' => $idea, 'votesCount' => $idea->votes()->count() ])
+            ->call('vote')
+            ->assertRedirect(route('login'));
+    }
+
+    function test_authenticated_user_can_vote_an_idea()
+    {
+        $user = User::factory()->create();
+        $category = Category::factory()->create([ 'name' => 'Test' ]);
+        $status = Status::factory()->create([ 'name' => 'Open' ]);
+        $idea = Idea::factory()->create([
+            'user_id' => $user->id,
+            'category_id' => $category->id,
+            'status_id' => $status->id,
+        ]);
+
+        Livewire::actingAs($user)
+            ->test(IdeaShow::class, [ 'idea' => $idea, 'votesCount' => $idea->votes()->count() ])
+            ->call('vote')
+            ->assertSet('votesCount', 1)
+            ->assertSet('hasVoted', true);
+
+        $this->assertDatabaseHas('votes', [
+            'idea_id' => $idea->id,
+            'user_id' => $user->id
+        ]);
+    }
+
+    function test_authenticated_user_can_unvote_an_idea()
+    {
+        $user = User::factory()->create();
+        $category = Category::factory()->create([ 'name' => 'Test' ]);
+        $status = Status::factory()->create([ 'name' => 'Open' ]);
+        $idea = Idea::factory()->create([
+            'user_id' => $user->id,
+            'category_id' => $category->id,
+            'status_id' => $status->id,
+        ]);
+
+        Vote::factory()->create([
+            'idea_id' => $idea->id,
+            'user_id' => $user->id
+        ]);
+
+        Livewire::actingAs($user)
+            ->test(IdeaShow::class, [ 'idea' => $idea, 'votesCount' => $idea->votes()->count() ])
+            ->call('vote')
+            ->assertSet('votesCount', 0)
+            ->assertSet('hasVoted', false);
+
+        $this->assertDatabaseMissing('votes', [
+            'idea_id' => $idea->id,
+            'user_id' => $user->id
+        ]);
+    }
 }

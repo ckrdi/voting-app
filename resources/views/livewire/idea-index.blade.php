@@ -8,11 +8,11 @@
         <div class="mt-8">
             {{--  change button to blue if voted  --}}
             @if ($hasVoted)
-                <button class="w-20 font-bold text-xs uppercase rounded-xl px-4 py-3 border 
+                <button wire:click.prevent="vote" class="w-20 font-bold text-xs uppercase rounded-xl px-4 py-3 border 
                 bg-blue border-blue hover:border-blue-hover text-white 
                 transition duration-150 ease-in">Voted</button>
             @else
-                <button class="w-20 font-bold text-xs uppercase rounded-xl px-4 py-3 border 
+                <button wire:click.prevent="vote" class="w-20 font-bold text-xs uppercase rounded-xl px-4 py-3 border 
                 bg-gray-200 border-gray-200 hover:border-gray-400 
                 transition duration-150 ease-in">Vote</button>    
             @endif
@@ -63,13 +63,13 @@
                         </div>
                         {{--  change button to blue if voted  --}}
                         @if ($hasVoted)
-                            <button type="button" class="flex items-center justify-center uppercase lg:w-32 lg:h-11 text-xs 
+                            <button wire:click.prevent="vote" type="button" class="flex items-center justify-center uppercase lg:w-32 lg:h-11 text-xs 
                             font-semibold rounded-xl border bg-blue border-blue hover:border-blue-hover text-white 
                             transition duration-150 ease-in px-2 py-1 lg:px-6 lg:py-3">
                             Voted
                             </button>
                         @else
-                            <button type="button" class="flex items-center justify-center uppercase lg:w-32 lg:h-11 text-xs 
+                            <button wire:click.prevent="vote" type="button" class="flex items-center justify-center uppercase lg:w-32 lg:h-11 text-xs 
                             font-semibold rounded-xl border bg-gray-200 border-gray-200 hover:border-gray-400 
                             transition duration-150 ease-in px-2 py-1 lg:px-6 lg:py-3">
                             Vote
