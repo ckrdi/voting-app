@@ -83,4 +83,25 @@ class VoteShowPageTest extends TestCase
 
         $this->get(route('show', $idea))->assertViewHas('votesCount', 2);
     }
+
+    function test_logged_in_user_can_see_voted_ideas()
+    {
+        $user = User::factory()->create();
+        $category = Category::factory()->create([ 'name' => 'Test' ]);
+        $status = Status::factory()->create([ 'name' => 'Open' ]);
+        $idea = Idea::factory()->create([
+            'user_id' => $user->id,
+            'category_id' => $category->id,
+            'status_id' => $status->id,
+        ]);
+
+        Vote::factory()->create([
+            'idea_id' => $idea->id,
+            'user_id' => $user->id
+        ]);
+
+        Livewire::actingAs($user)
+            ->test(IdeaShow::class, [ 'idea' => $idea, 'votesCount' => $idea->votes()->count() ])
+            ->assertSet('hasVoted', true);
+    }
 }

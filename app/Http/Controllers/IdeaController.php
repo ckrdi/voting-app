@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Category;
 use App\Models\Idea;
+use App\Models\Vote;
 use Illuminate\Http\Request;
 
 class IdeaController extends Controller
@@ -18,7 +19,12 @@ class IdeaController extends Controller
         // simple pagination using tailwind
         // added PAGINATION_COUNT so not using magic number
         // with eager loading
+        // addSelect for advanced subquery -> subquery selects
+        // withCount(): get related records amount -> votes_count
         $data = Idea::with('user', 'category', 'status')
+            ->addSelect([ 'voted_by_user' => Vote::select('id')
+                ->where('user_id', auth()->id())
+                ->whereColumn('idea_id', 'ideas.id') ])
             ->withCount('votes')
             ->latest()
             ->simplePaginate(Idea::PAGINATION_COUNT);

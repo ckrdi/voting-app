@@ -85,4 +85,32 @@ class VoteIndexPageTest extends TestCase
             return $data->first()->votes_count == 2;
         });
     }
+
+    function test_logged_in_user_can_see_voted_ideas()
+    {
+        $user = User::factory()->create();
+        $category = Category::factory()->create([ 'name' => 'Test' ]);
+        $status = Status::factory()->create([ 'name' => 'Open' ]);
+        $idea = Idea::factory()->create([
+            'user_id' => $user->id,
+            'category_id' => $category->id,
+            'status_id' => $status->id,
+        ]);
+        Vote::factory()->create([
+            'idea_id' => $idea->id,
+            'user_id' => $user->id
+        ]);
+
+        $data = Idea::with('user', 'category', 'status')
+            ->addSelect([ 'voted_by_user' => Vote::select('id')
+                ->where('user_id', $user->id)
+                ->whereColumn('idea_id', 'ideas.id') ])
+            ->withCount('votes')
+            ->first();
+
+        Livewire::actingAs($user)
+            ->test(IdeaIndex::class, [ 'idea' => $data, 'votesCount' => $data->votes_count ])
+            ->assertSet('hasVoted', true)
+            ->assertSee($data->votes_count);
+    }
 }
