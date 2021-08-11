@@ -59,33 +59,6 @@ class VoteIndexPageTest extends TestCase
             ->assertSee($idea->votes_count);
     }
 
-    function test_idea_index_rendering_votes()
-    {
-        $userA = User::factory()->create();
-        $userB = User::factory()->create();
-
-        $category = Category::factory()->create([ 'name' => 'Test' ]);
-        $status = Status::factory()->create([ 'name' => 'Open' ]);
-        $idea = Idea::factory()->create([
-            'user_id' => $userA->id,
-            'category_id' => $category->id,
-            'status_id' => $status->id,
-        ]);
-
-        Vote::factory()->create([
-            'idea_id' => $idea->id,
-            'user_id' => $userA->id
-        ]);
-        Vote::factory()->create([
-            'idea_id' => $idea->id,
-            'user_id' => $userB->id
-        ]);
-
-        $this->get(route('index'))->assertViewHas('data', function($data) {
-            return $data->first()->votes_count == 2;
-        });
-    }
-
     function test_logged_in_user_can_see_voted_ideas()
     {
         $user = User::factory()->create();

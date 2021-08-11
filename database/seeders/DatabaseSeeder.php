@@ -26,10 +26,10 @@ class DatabaseSeeder extends Seeder
         ]);
         User::factory(4)->create();
         
-        Category::factory()->create([ 'name' => 'Urgent' ]);
-        Category::factory()->create([ 'name' => 'Not urgent' ]);
-        Category::factory()->create([ 'name' => 'Can be delegated' ]);
-        Category::factory()->create([ 'name' => 'Cannot be delegated' ]);
+        Category::factory()->create([ 'name' => 'Urgent, Important' ]);
+        Category::factory()->create([ 'name' => 'Not Urgent, Important' ]);
+        Category::factory()->create([ 'name' => 'Urgent, Not Important' ]);
+        Category::factory()->create([ 'name' => 'Not Urgent, Not Important' ]);
 
         Status::factory()->create([ 'name' => 'Open' ]);
         Status::factory()->create([ 'name' => 'In Progress' ]);
