@@ -32,6 +32,7 @@
     </div> <!-- end ideas container -->
     <div>
         {{-- simple pagination using simplePaginate --}}
-        {{ $data->links() }}
+        {{-- {{ $data->links() }} --}}
+        {{ $data->appends(request()->query())->links() }}
     </div>
 </div>

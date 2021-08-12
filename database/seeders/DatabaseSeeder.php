@@ -32,12 +32,12 @@ class DatabaseSeeder extends Seeder
         Category::factory()->create([ 'name' => 'Not Urgent, Not Important' ]);
 
         Status::factory()->create([ 'name' => 'Open' ]);
-        Status::factory()->create([ 'name' => 'In Progress' ]);
-        Status::factory()->create([ 'name' => 'Closed' ]);
-        Status::factory()->create([ 'name' => 'Implemented' ]);
         Status::factory()->create([ 'name' => 'Considering' ]);
+        Status::factory()->create([ 'name' => 'In Progress' ]);
+        Status::factory()->create([ 'name' => 'Implemented' ]);
+        Status::factory()->create([ 'name' => 'Closed' ]);
 
-        Idea::factory(30)->create();
+        Idea::factory(100)->create();
 
         // generate unique votes
         foreach (range(1, 5) as $user_id) {
